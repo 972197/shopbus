@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
-// ─── Types ────────────────────────────────────────────────────────────────────
+// ─── Types ────────────────────────────────────────────────────────────
 interface Product {
   _id: string;
   name: string;
@@ -26,26 +26,26 @@ interface Product {
 interface CartItem extends Product { quantity: number; }
 interface User { _id: string; name: string; email: string; role: string; avatar?: string; }
 
-// ─── Context ──────────────────────────────────────────────────────────────────
+// ─── Context ──────────────────────────────────────────────────────────
 const AppContext = createContext<any>(null);
 
 const useApp = () => useContext(AppContext);
 
-// ─── Mock Data ────────────────────────────────────────────────────────────────
+// ─── Mock Data ────────────────────────────────────────────────────────
 const MOCK_PRODUCTS: Product[] = [
-  { _id: "1", name: "Arc'teryx Beta Jacket", description: "Premium Gore-Tex shell for alpine pursuits. Waterproof, breathable, and built to last a lifetime.", price: 799, discountPrice: 649, category: "Outerwear", brand: "Arc'teryx", images: ["https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600"], stock: 12, ratings: 4.9, numReviews: 234, featured: true },
-  { _id: "2", name: "Leica Q3 Camera", description: "Full-frame 60MP sensor. Summilux 28mm f/1.7 ASPH lens. The art of photography, perfected.", price: 5995, category: "Electronics", brand: "Leica", images: ["https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600"], stock: 5, ratings: 4.8, numReviews: 89, featured: true },
-  { _id: "3", name: "Aesop Parsley Seed Serum", description: "Antioxidant-rich serum that visibly smooths and brightens. A daily ritual refined over decades.", price: 145, category: "Beauty", brand: "Aesop", images: ["https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600"], stock: 30, ratings: 4.7, numReviews: 512 },
-  { _id: "4", name: "Herman Miller Aeron", description: "Engineered for ergonomic excellence. PostureFit SL, 8Z Pellicle mesh, fully adjustable.", price: 1795, discountPrice: 1499, category: "Furniture", brand: "Herman Miller", images: ["https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600"], stock: 8, ratings: 4.9, numReviews: 1203 },
-  { _id: "5", name: "Lamy 2000 Fountain Pen", description: "Bauhaus design icon since 1966. Makrolon body, gold-plated nib, piston filler mechanism.", price: 185, category: "Stationery", brand: "Lamy", images: ["https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600"], stock: 25, ratings: 4.8, numReviews: 678 },
-  { _id: "6", name: "Maison Margiela Replica", description: "Jazz Club — vetiver, Virginia cedar, pink pepper. A fragrance that tells a story.", price: 195, category: "Beauty", brand: "Maison Margiela", images: ["https://images.unsplash.com/photo-1541643600914-78b084683702?w=600"], stock: 18, ratings: 4.6, numReviews: 445 },
-  { _id: "7", name: "Patagonia Nano Puff", description: "PrimaLoft insulation, recycled shell. Packable warmth that won't quit.", price: 249, discountPrice: 199, category: "Outerwear", brand: "Patagonia", images: ["https://images.unsplash.com/photo-1544966503-7cc5ac882d5f?w=600"], stock: 22, ratings: 4.7, numReviews: 891 },
-  { _id: "8", name: "Sonos Era 300", description: "Spatial audio. Dolby Atmos. Six drivers. The future of home listening arrived early.", price: 449, category: "Electronics", brand: "Sonos", images: ["https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600"], stock: 14, ratings: 4.5, numReviews: 334 },
+  { _id: "1", name: "Arc'teryx Beta Jacket", description: "Premium Gore-Tex shell for alpine pursuits. Waterproof, breathable, and built to last a lifetime.", price: 799, discountPrice: 649, category: "Outerwear", brand: "Arc'teryx", images: ["https://images.unsplash.com/photo-1551028719-00167b16ebc5?w=600"], stock: 12, ratings: 5, numReviews: 89, featured: true },
+  { _id: "2", name: "Leica Q3 Camera", description: "Full-frame 60MP sensor. Summilux 28mm f/1.7 ASPH lens. The art of photography, perfected.", price: 5995, category: "Electronics", brand: "Leica", images: ["https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=600"], stock: 5, ratings: 5, numReviews: 34, featured: true },
+  { _id: "3", name: "Aesop Parsley Seed Serum", description: "Antioxidant-rich serum that visibly smooths and brightens. A daily ritual refined over decades.", price: 145, category: "Beauty", brand: "Aesop", images: ["https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600"], stock: 48, ratings: 4, numReviews: 156 },
+  { _id: "4", name: "Herman Miller Aeron", description: "Engineered for ergonomic excellence. PostureFit SL, 8Z Pellicle mesh, fully adjustable.", price: 1795, discountPrice: 1499, category: "Furniture", brand: "Herman Miller", images: ["https://images.unsplash.com/photo-1592078615290-033ee584e267?w=600"], stock: 8, ratings: 5, numReviews: 203, featured: true },
+  { _id: "5", name: "Lamy 2000 Fountain Pen", description: "Bauhaus design icon since 1966. Makrolon body, gold-plated nib, piston filler mechanism.", price: 185, category: "Stationery", brand: "Lamy", images: ["https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600"], stock: 24, ratings: 4, numReviews: 67 },
+  { _id: "6", name: "Maison Margiela Replica", description: "Jazz Club — vetiver, Virginia cedar, pink pepper. A fragrance that tells a story.", price: 195, category: "Beauty", brand: "Maison Margiela", images: ["https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600"], stock: 18, ratings: 4, numReviews: 92 },
+  { _id: "7", name: "Patagonia Nano Puff", description: "PrimaLoft insulation, recycled shell. Packable warmth that won't quit.", price: 249, discountPrice: 199, category: "Outerwear", brand: "Patagonia", images: ["https://images.unsplash.com/photo-1539536394-c0fa5ff85e5e?w=600"], stock: 32, ratings: 5, numReviews: 128, featured: true },
+  { _id: "8", name: "Sonos Era 300", description: "Spatial audio. Dolby Atmos. Six drivers. The future of home listening arrived early.", price: 449, category: "Electronics", brand: "Sonos", images: ["https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600"], stock: 15, ratings: 4, numReviews: 45 },
 ];
 
 const CATEGORIES = ["All", "Outerwear", "Electronics", "Beauty", "Furniture", "Stationery"];
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
+// ─── Helpers ──────────────────────────────────────────────────────────
 const Stars = ({ rating }: { rating: number }) => (
   <div className="flex gap-0.5">
     {[1, 2, 3, 4, 5].map(i => (
@@ -56,7 +56,7 @@ const Stars = ({ rating }: { rating: number }) => (
 
 const API = import.meta.env.VITE_API_URL || "";
 
-// ─── Pages ────────────────────────────────────────────────────────────────────
+// ─── Pages ────────────────────────────────────────────────────────────
 
 // HOME
 function HomePage() {
@@ -129,7 +129,7 @@ function HomePage() {
               className="w-full bg-stone-900 border border-stone-700 text-white pl-9 pr-4 py-3 text-sm focus:outline-none focus:border-amber-400 transition-colors" />
           </div>
           <button onClick={() => setShowFilters(!showFilters)} className="flex items-center gap-2 border border-stone-700 text-stone-300 px-4 py-3 text-sm hover:border-amber-400 transition-colors">
-            <Filter size={15} /> Filters <ChevronDown size={14} className={transition-transform ${showFilters ? 'rotate-180' : ''}} />
+            <Filter size={15} /> Filters <ChevronDown size={14} className={`transition-transform ${showFilters ? 'rotate-180' : ''}`} />
           </button>
           <select value={sort} onChange={e => setSort(e.target.value)} className="bg-stone-900 border border-stone-700 text-stone-300 px-4 py-3 text-sm focus:outline-none focus:border-amber-400">
             <option value="featured">Featured</option>
@@ -145,7 +145,8 @@ function HomePage() {
               <div className="flex flex-wrap gap-2 py-2">
                 {CATEGORIES.map(c => (
                   <button key={c} onClick={() => setCategory(c)}
-                    className={px-4 py-2 text-sm border transition-colors ${category === c ? 'bg-amber-400 border-amber-400 text-stone-950 font-semibold' : 'border-stone-700 text-stone-400 hover:border-amber-400 hover:text-white'}}>
+                    className={`px-4 py-2 text-sm border transition-colors ${category === c ? 'bg-amber-400 border-amber-400 text-stone-950 font-semibold' : 'border-stone-700 text-stone-400 hover:border-amber-400'}`}
+                  >
                     {c}
                   </button>
                 ))}
@@ -324,7 +325,7 @@ function CartPage() {
           <h2 className="font-serif text-xl text-white mb-6">Order Summary</h2>
           <div className="space-y-3 mb-6">
             <div className="flex justify-between text-stone-400 text-sm"><span>Subtotal</span><span>${subtotal.toFixed(2)}</span></div>
-            <div className="flex justify-between text-stone-400 text-sm"><span>Shipping</span><span>{shipping === 0 ? <span className="text-amber-400">Free</span> : $${shipping}}</span></div>
+            <div className="flex justify-between text-stone-400 text-sm"><span>Shipping</span><span>{shipping === 0 ? <span className="text-amber-400">Free</span> : `$${shipping}`}</span></div>
             <div className="flex justify-between text-stone-400 text-sm"><span>Tax (8%)</span><span>${tax.toFixed(2)}</span></div>
             <div className="border-t border-stone-800 pt-3 flex justify-between text-white font-semibold"><span>Total</span><span>${total.toFixed(2)}</span></div>
           </div>
@@ -370,8 +371,8 @@ function CheckoutPage() {
       <div className="flex items-center gap-4 mb-10">
         {[{ n: 1, label: "Shipping", icon: MapPin }, { n: 2, label: "Payment", icon: CreditCard }].map(({ n, label, icon: Icon }) => (
           <div key={n} className="flex items-center gap-2">
-            <div className={w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${step >= n ? 'bg-amber-400 text-stone-950' : 'bg-stone-800 text-stone-500'}}>{n}</div>
-            <span className={text-sm ${step >= n ? 'text-white' : 'text-stone-500'}}>{label}</span>
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold ${step >= n ? 'bg-amber-400 text-stone-950' : 'bg-stone-800 text-stone-500'}`}>{n}</div>
+            <span className={`text-sm ${step >= n ? 'text-white' : 'text-stone-500'}`}>{label}</span>
             {n < 2 && <ChevronRight size={14} className="text-stone-600 ml-2" />}
           </div>
         ))}
@@ -430,7 +431,7 @@ function AuthPage() {
     if (!form.email || !form.password) { setError("Please fill all fields."); return; }
     try {
       const endpoint = isLogin ? "/api/v1/auth/login" : "/api/v1/auth/register";
-      const res = await fetch(${API}${endpoint}, {
+      const res = await fetch(`${API}${endpoint}`, {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form), credentials: "include"
       });
@@ -532,7 +533,7 @@ function WishlistPage() {
   );
 }
 
-// ─── Layout ───────────────────────────────────────────────────────────────────
+// ─── Layout ──────────────────────────────────────────────────────────
 function Navbar() {
   const { page, setPage, cart, user, logout, wishlist } = useApp();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -549,7 +550,7 @@ function Navbar() {
         <div className="hidden md:flex items-center gap-6">
           {["home", "wishlist"].map(p => (
             <button key={p} onClick={() => setPage(p)}
-              className={text-sm capitalize transition-colors ${page === p ? 'text-amber-400' : 'text-stone-400 hover:text-white'}}>
+              className={`text-sm capitalize transition-colors ${page === p ? 'text-amber-400' : 'text-stone-400 hover:text-white'}`}>
               {p === 'home' ? 'Shop' : p}
             </button>
           ))}
@@ -636,7 +637,7 @@ function Toast({ message, onClose }: { message: string; onClose: () => void }) {
   );
 }
 
-// ─── App Root ─────────────────────────────────────────────────────────────────
+// ─── App Root ──────────────────────────────────────────────────────────
 export default function App() {
   const [page, setPageRaw] = useState<string>("home");
   const [pageData, setPageData] = useState<any>(null);
@@ -657,7 +658,7 @@ export default function App() {
       if (existing) return c.map(i => i._id === product._id ? { ...i, quantity: i.quantity + qty } : i);
       return [...c, { ...product, quantity: qty }];
     });
-    setToast(${product.name} added to cart);
+    setToast(`${product.name} added to cart`);
   };
 
   const updateQty = (id: string, qty: number) => {
